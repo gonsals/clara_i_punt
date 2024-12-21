@@ -1,5 +1,5 @@
 ---
-
+import Loader from "../components/Loader.astro";
 ---
 
 <!doctype html>
@@ -19,6 +19,7 @@
     </head>
     <body>
         <slot />
+        <Loader />
     </body>
 </html>
 
@@ -34,3 +35,38 @@
         font-family: "Figtree", sans-serif;
     }
 </style>
+
+<script>
+    window.addEventListener("load", () => {
+        const images = document.querySelectorAll("img");
+        const totalImages = images.length;
+
+        if (totalImages === 0) {
+            const loader = document.querySelector(".loader");
+            if (loader instanceof HTMLElement) {
+                loader.style.display = "none";
+            }
+        } else {
+            let loadedImages = 0;
+
+            const checkImageLoad = () => {
+                loadedImages++;
+                if (loadedImages === totalImages) {
+                    const loader = document.querySelector(".loader");
+                    if (loader instanceof HTMLElement) {
+                        loader.style.display = "none";
+                    }
+                }
+            };
+
+            images.forEach((image) => {
+                if (image.complete) {
+                    checkImageLoad();
+                } else {
+                    image.addEventListener("load", checkImageLoad);
+                    image.addEventListener("error", checkImageLoad);
+                }
+            });
+        }
+    });
+</script>
