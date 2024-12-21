@@ -6,7 +6,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <header className=" flex items-center justify-center bg-[#111111] w-full">
+        <header className=" flex items-center justify-center bg-clara-blue-dark w-full">
             <div className="container flex py-5 px-3">
                 <div className="flex items-center pt-3">
                     <a href="/">

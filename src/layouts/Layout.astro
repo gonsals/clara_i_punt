@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header.jsx";
+
 ---
 
 <!doctype html>
@@ -9,6 +9,12 @@ import Header from "../components/Header.jsx";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+            rel="stylesheet"
+        />
         <title>Astro Basics</title>
     </head>
     <body>
@@ -25,5 +31,6 @@ import Header from "../components/Header.jsx";
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-family: "Figtree", sans-serif;
     }
 </style>

@@ -21,7 +21,7 @@ const Sidebar = ({ open = false, setOpen }) => {
                 >
                     <div
                         id="sidebar"
-                        className={`fixed right-0 top-0 w-[250px] h-screen bg-almost-white pt-20 p-8 z-50 bg-white`}
+                        className={`fixed right-0 top-0 w-[250px] h-screen pt-20 p-8 z-50 bg-white`}
                     >
                         <button
                             onClick={() => setOpen(false)}
@@ -149,10 +149,9 @@ const Sidebar = ({ open = false, setOpen }) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    {/* ... */}
                     <div
                         onClick={() => setOpen(false)}
-                        className={`"w-full h-full fixed bg-black opacity-80 z-10 inset-0`}
+                        className="w-full h-full fixed bg-black opacity-80 z-40 inset-0"
                     ></div>
                 </TransitionChild>
             </Transition>

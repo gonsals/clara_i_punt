@@ -1,18 +1,21 @@
 ---
-import Header from "../components/Header";
-import ProductsIsland from "../components/ProductsIsland.astro";
+import Button from "../components/Button.astro";
+import Header from "../components/navBar/Header";
+import Products from "../components/Products.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
     <Header client:only="react" />
-    <div class="container">
-        <h1>Lista de Productos</h1>
-    </div>
+    <h1
+        class="text-clara-text-blue font-bold text-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl pt-10"
+    >
+        El passatemps de la Clara,<br /> a les teves mans
+    </h1>
 
-    <ProductsIsland client:defer>
-        <p slot="fallback" class="text-5xl text-red-500">
-            Cargando productos...
-        </p>
-    </ProductsIsland>
+    <Button
+        text="Fes-hi un cop d'ull"
+        className=" lg:mt-10 md:mt-6 sm:mt-10 mt-5 mb-4 md:mb-5 lg:mb-0"
+    />
+    <Products />
 </Layout>
