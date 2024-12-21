@@ -12,7 +12,7 @@ const { image, className = "" }: Props = Astro.props;
 ---
 
 <div
-    class=` prueba mt-0 lg:mt-16 text-center bg-clara-yellow rounded-[28px] shadow-md px-4 flex flex-col items-center justify-end relative w-full h-full overflow-hidden hover:scale-105 transition-transform duration-500 pt-32 lg:pt-0 min-h-[398px] ${className}`
+    class={`prueba mt-0 lg:mt-16 text-center bg-clara-yellow rounded-[28px] shadow-md px-4 flex flex-col items-center justify-end relative w-full h-full overflow-hidden hover:scale-105 transition-transform duration-500 pt-32 lg:pt-0 min-h-[398px] ${className}`}
 >
     <Image
         src={flor}
@@ -26,7 +26,7 @@ const { image, className = "" }: Props = Astro.props;
         alt="Producto 2"
         width="300"
         height="300"
-        class="rounded-lg "
+        class="rounded-lg"
     />
 </div>
 
