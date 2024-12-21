@@ -7,7 +7,11 @@ import tailwind from "@astrojs/tailwind";
 
 import lottie from "astro-integration-lottie";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [react(), tailwind(), lottie()],
+    output: "server",
+    adapter: vercel(),
 });
