@@ -23,26 +23,23 @@ let error = null;
 
 if (response.ok) {
     const { records } = await response.json();
+    console.log("this is records", records);
     products = records;
 } else {
     error = `Error al cargar productos: ${response.statusText}`;
 }
+
+console.log(products[2].fields.Imagenes[0].url);
 ---
 
-<div class="container pl-4 md:px-0">
-    {
-        products.length === 0 && !error ? (
-            <div class="loader">
-                <p>Cargando productos...</p>
-            </div>
-        ) : null
-    }
+<div class="container px-4 md:px-0">
+    {products.length === 0 && !error ? <p>Cargando productos...</p> : null}
 
     {
         error ? (
             <p class="text-red-500">{error}</p>
         ) : (
-            <div class="md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden ">
+            <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
                 <CardProduct1 image={products[2].fields.Imagenes[0].url} />
                 <CardProduct2 image={products[1].fields.Imagenes[0].url} />
                 <CardProduct3 image={products[0].fields.Imagenes[0].url} />
@@ -86,31 +83,6 @@ if (response.ok) {
 </script>
 
 <style>
-    .loader {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .loader::after {
-        content: "...";
-        animation: dot-blink 1.5s infinite;
-    }
-
-    @keyframes dot-blink {
-        0% {
-            content: ".";
-        }
-        33% {
-            content: "..";
-        }
-        66% {
-            content: "...";
-        }
-        100% {
-            content: ".";
-        }
-    }
-
     @screen md {
         .swiper {
             display: none;

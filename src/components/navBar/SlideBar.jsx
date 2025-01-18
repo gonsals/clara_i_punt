@@ -28,11 +28,12 @@ const Sidebar = ({ open = false, setOpen }) => {
                             aria-expanded={open}
                             aria-controls="sidebar"
                         >
-                            <img
+                            <span className=" absolute top-5 right-5">X</span>
+                            {/* <img
                                 className="absolute top-5 right-5"
                                 src="images/icon-close-menu.svg"
                                 alt="Close Menu"
-                            />
+                            /> */}
                         </button>
                         <ul className="flex flex-col space-y-3">
                             <li>
@@ -41,49 +42,50 @@ const Sidebar = ({ open = false, setOpen }) => {
                                         <>
                                             <DisclosureButton className="flex items-center text-left">
                                                 <span className="mr-4">
-                                                    Features
+                                                    bbbbbbbbb
                                                 </span>
-                                                <img
+                                                {/* <img
                                                     clasName=""
                                                     src={`images/icon-arrow-${
                                                         open ? "up" : "down"
                                                     }.svg`}
                                                     alt="Arrow"
-                                                />
+                                                /> */}
+                                                ⬇️
                                             </DisclosureButton>
                                             <DisclosurePanel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                                                 <ul className="flex flex-col space-y-3">
                                                     <li className="cursor-pointer">
-                                                        <img
+                                                        {/* <img
                                                             src="images/icon-todo.svg"
                                                             className="inline w-4 mr-3"
                                                             alt="Todo List Icon"
-                                                        />
-                                                        Todo list
+                                                        /> */}
+                                                        bbbbbbb
                                                     </li>
                                                     <li className="cursor-pointer">
-                                                        <img
+                                                        {/* <img
                                                             src="images/icon-calendar.svg"
                                                             className="inline w-4 mr-3"
                                                             alt="Calendar Icon"
-                                                        />
-                                                        Calendar
+                                                        /> */}
+                                                        bbbbbbbbb
                                                     </li>
                                                     <li className="cursor-pointer">
-                                                        <img
+                                                        {/* <img
                                                             src="images/icon-reminders.svg"
                                                             className="inline w-4 mr-3"
                                                             alt="Reminders Icon"
-                                                        />
-                                                        Reminders
+                                                        /> */}
+                                                        bbbbbbbbb
                                                     </li>
                                                     <li className="cursor-pointer">
-                                                        <img
+                                                        {/* <img
                                                             src="images/icon-planning.svg"
                                                             className="inline w-4 mr-3"
                                                             alt="Planning Icon"
-                                                        />
-                                                        Planning
+                                                        /> */}
+                                                        bbbbbbb
                                                     </li>
                                                 </ul>
                                             </DisclosurePanel>
@@ -95,46 +97,47 @@ const Sidebar = ({ open = false, setOpen }) => {
                                 <Disclosure>
                                     {({ open }) => (
                                         <>
-                                            <Disclosure.Button className="flex items-center text-left">
+                                            <DisclosureButton className="flex items-center text-left">
                                                 <span className="mr-4">
-                                                    Company
+                                                    aaaaaa
                                                 </span>
-                                                <img
+                                                {/* <img
                                                     clasName=""
                                                     src={`images/icon-arrow-${
                                                         open ? "up" : "down"
                                                     }.svg`}
                                                     alt="Arrow"
-                                                />
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                                /> */}
+                                                ⬇️
+                                            </DisclosureButton>
+                                            <DisclosurePanel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                                                 <ul className="flex flex-col space-y-3">
                                                     <li className="cursor-pointer">
-                                                        History
+                                                        aaaaaaa
                                                     </li>
                                                     <li className="cursor-pointer">
-                                                        Our Team
+                                                        aaaaaaa
                                                     </li>
                                                     <li className="cursor-pointer">
-                                                        Blog
+                                                        aaaaaaa
                                                     </li>
                                                 </ul>
-                                            </Disclosure.Panel>
+                                            </DisclosurePanel>
                                         </>
                                     )}
                                 </Disclosure>
                             </li>
-                            <li>Careers</li>
-                            <li>About</li>
+                            <li>ababababab</li>
+                            <li>ababababab</li>
                         </ul>
 
                         <div className="flex flex-col space-y-5 items-center justify-items-center pt-8">
                             <div className="hover:text-almost-black cursor-pointer">
-                                Login
+                                aaaaaaaaa
                             </div>
                             <div className="w-full">
                                 <button className="w-full border-2 hover:border-almost-black hover:text-almost-black rounded-xl px-4 py-2">
-                                    Register
+                                    bbbbbbbbbb
                                 </button>
                             </div>
                         </div>
