@@ -6,11 +6,13 @@ const TextMarquee = ({
     speed = 50,
     fontColor = "#96CADE",
     rotate = false,
+    direction = "left",
 }) => {
     return (
         <Marquee
             speed={speed}
             autoFill={true}
+            direction={direction}
             style={{
                 transform: rotate ? "rotate(-0.6deg)" : "rotate(0.6deg)",
                 backgroundColor: backgroundColor,
