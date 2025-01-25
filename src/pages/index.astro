@@ -2,19 +2,21 @@
 import Button from "../components/Button.astro";
 import TextMarquee from "../components/Marqueee";
 import Header from "../components/navBar/Header";
-import Products from "../components/Products.astro";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
 import florDreta from "../../public/images/florDreta.svg";
 import florEsquerra from "../../public/images/florEsquerra.svg";
+import Products from "../components/hero/Products.astro";
+import Marquee from "react-fast-marquee";
+import TextMarqueeSolitaire from "../components/MarqueeeSolitaire";
 ---
 
 <Layout>
     <Header client:only="react" />
 
     <!-- Hero section -->
-    <section class="flex flex-col items-center lg:w-[75%] w-full">
+    <section id="hero" class="flex flex-col items-center lg:w-[75%] w-full">
         <h1
             class="text-clara-text-blue font-bold text-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl pt-10"
         >
@@ -87,4 +89,16 @@ import florEsquerra from "../../public/images/florEsquerra.svg";
             </div>
         </div>
     </section>
+
+    <div
+        class="lg:my-28 md:my-8 my-6 w-screen flex flex-col justify-center items-center"
+    >
+        <TextMarqueeSolitaire
+            client:only="react"
+            text="📌 Producte de proximitat  "
+            speed={90}
+            fontColor="white"
+            direction="right"
+        />
+    </div>
 </Layout>

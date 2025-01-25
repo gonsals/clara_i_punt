@@ -1,11 +1,10 @@
 import Marquee from "react-fast-marquee";
 
-const TextMarquee = ({
+const TextMarqueeSolitaire = ({
     text,
-    backgroundColor = "#F6BDFD",
+    backgroundColor = "#007CC6",
     speed = 50,
     fontColor = "#96CADE",
-    rotate = false,
     direction = "left",
 }) => {
     return (
@@ -14,7 +13,6 @@ const TextMarquee = ({
             autoFill={true}
             direction={direction}
             style={{
-                transform: rotate ? "rotate(-0.6deg)" : "rotate(0.6deg)",
                 backgroundColor: backgroundColor,
             }}
             className={`border lg:py-5 md:py-4 py-2 border-none`}
@@ -31,4 +29,4 @@ const TextMarquee = ({
     );
 };
 
-export default TextMarquee;
+export default TextMarqueeSolitaire;
