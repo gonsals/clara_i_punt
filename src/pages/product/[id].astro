@@ -1,0 +1,36 @@
+---
+import { getProductInfo } from "../../hooks/getProductInfo";
+import { getProductsIds } from "../../hooks/getProducts";
+import ProductLayout from "../../layouts/ProductLayout.astro";
+
+const { id } = Astro.params;
+
+export async function getStaticPaths() {
+    const { ids, error } = await getProductsIds();
+
+    if (error) {
+        return { paths: [], fallback: "blocking" };
+    }
+    return ids.map((id: string) => ({ params: { id } }));
+}
+
+const { data, error, loading } = await getProductInfo(id);
+---
+
+<ProductLayout name={data?.Nombre}>
+    {
+        error ? (
+            <p class="text-red-500">{error}</p>
+        ) : (
+            <div>
+                <h1 transition:name="prueba">{data?.Nombre}</h1>
+                <p>{data.Descripcion}</p>
+                <img
+                    src={data.Imagenes[0].url}
+                    alt={data.Nombre}
+                    transition:name={`${id}-prueba`}
+                />
+            </div>
+        )
+    }
+</ProductLayout>

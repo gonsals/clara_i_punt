@@ -1,0 +1,34 @@
+---
+import ProductInfo from "./ProductInfo.astro";
+
+const { products, error } = Astro.props;
+
+const getRandomProduct = () => {
+    const randomIndex = Math.floor(Math.random() * products.length);
+    return products[randomIndex];
+};
+
+const product = getRandomProduct();
+---
+
+<div class="px-4 md:px-0 bg-clara-blue-light w-full h-full relative py-10">
+    {
+        error ? (
+            <p class="text-red-500">{error}</p>
+        ) : (
+            <div class="container px-4 md:px-0 mx-auto ">
+                <h2 class=" font-figtree text-clara-text-blue md:text-5xl text-3xl font-bold">
+                    Produït a poc a poc
+                </h2>
+                <div class="flex items-center mt-4">
+                    <img
+                        class="h-96 w-96 md:w-auto md:h-auto object-cover rounded-2xl"
+                        src={product.fields.Imagenes[1].url}
+                        alt={product.fields.Nombre}
+                    />
+                </div>
+                <ProductInfo product={product} error={error} />
+            </div>
+        )
+    }
+</div>

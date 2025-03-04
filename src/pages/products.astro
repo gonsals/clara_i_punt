@@ -1,0 +1,66 @@
+---
+import { getProducts } from "../hooks/getProducts";
+import Layout from "../layouts/Layout.astro";
+
+interface Product {
+    id: string;
+    fields: {
+        Imagenes: { url: string }[];
+        Nombre: string;
+        Descripcion: string;
+    };
+}
+
+const { products, error }: { products: Product[]; error: string | null } =
+    await getProducts();
+---
+
+<Layout>
+    {
+        error ? (
+            <p class="text-red-500">{error}</p>
+        ) : (
+            <div class="container px-4 md:px-0">
+                {products.length === 0 && !error ? (
+                    <p>Cargando productos...</p>
+                ) : null}
+
+                {error ? (
+                    <p class="text-red-500">{error}</p>
+                ) : (
+                    <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                        {products.map((product) => (
+                            <a href={`/product/${product.id}`}>
+                                <img
+                                    src={product?.fields?.Imagenes[0]?.url}
+                                    alt={product.fields.Nombre}
+                                    transition:name={`${product.id}-prueba`}
+                                />
+                                <h2>{product.fields.Nombre}</h2>
+                                <p>{product.fields.Descripcion}</p>
+                            </a>
+                        ))}
+                    </div>
+                )}
+
+                {/* Mostrar el carrusel solo en móviles */}
+                {/* <div class="swiper">
+                <div class="swiper-wrapper">
+                    <CardProduct1
+                        image={products[2].fields.Imagenes[0].url}
+                        className="swiper-slide"
+                    />
+                    <CardProduct2
+                        image={products[1].fields.Imagenes[0].url}
+                        className="swiper-slide"
+                    />
+                    <CardProduct3
+                        image={products[0].fields.Imagenes[0].url}
+                        className="swiper-slide"
+                    />
+                </div>
+            </div> */}
+            </div>
+        )
+    }
+</Layout>
