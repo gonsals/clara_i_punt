@@ -8,27 +8,36 @@ const getRandomProduct = () => {
     return products[randomIndex];
 };
 
-const product = getRandomProduct();
+let product = null;
+if (products.length > 0) {
+    product = getRandomProduct();
+}
 ---
 
 <div class="px-4 md:px-0 bg-clara-blue-light w-full h-full relative py-10">
     {
         error ? (
             <p class="text-red-500">{error}</p>
-        ) : (
+        ) : product ? (
             <div class="container px-4 md:px-0 mx-auto ">
                 <h2 class=" font-figtree text-clara-text-blue md:text-5xl text-3xl font-bold">
                     Produït a poc a poc
                 </h2>
                 <div class="flex items-center mt-4">
-                    <img
-                        class="h-96 w-96 md:w-auto md:h-auto object-cover rounded-2xl"
-                        src={product.fields.Imagenes[1].url}
-                        alt={product.fields.Nombre}
-                    />
+                    {product.fields.Imagenes && product.fields.Imagenes[1] ? (
+                        <img
+                            class="h-96 w-96 md:w-auto md:h-auto object-cover rounded-2xl"
+                            src={product.fields.Imagenes[1].url}
+                            alt={product.fields.Nombre}
+                        />
+                    ) : (
+                        <p>No hay imagen disponible</p>
+                    )}
                 </div>
                 <ProductInfo product={product} error={error} />
             </div>
+        ) : (
+            <p>Cargando producto...</p>
         )
     }
 </div>

@@ -23,7 +23,7 @@ const { data, error, loading } = await getProductInfo(id);
             <p class="text-red-500">{error}</p>
         ) : (
             <div>
-                <h1 transition:name="prueba">{data?.Nombre}</h1>
+                <h1 transition:name="info-product">{data?.Nombre}</h1>
                 <p>{data.Descripcion}</p>
                 <img
                     src={data.Imagenes[0].url}

@@ -1,6 +1,6 @@
 ---
 import { getProducts } from "../hooks/getProducts";
-import Layout from "../layouts/Layout.astro";
+import ProductLayout from "../layouts/ProductLayout.astro";
 
 interface Product {
     id: string;
@@ -15,7 +15,7 @@ const { products, error }: { products: Product[]; error: string | null } =
     await getProducts();
 ---
 
-<Layout>
+<ProductLayout>
     {
         error ? (
             <p class="text-red-500">{error}</p>
@@ -63,4 +63,4 @@ const { products, error }: { products: Product[]; error: string | null } =
             </div>
         )
     }
-</Layout>
+</ProductLayout>

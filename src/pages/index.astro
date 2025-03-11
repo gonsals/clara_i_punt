@@ -38,12 +38,14 @@ const { products, error } = await getProducts();
         class="lg:my-28 md:my-8 my-6 w-screen flex flex-col justify-center items-center"
     >
         <TextMarquee
+            astro:after-swap
             client:only="react"
             text="+23 clientes contentes ,🏔️ Produit artesanalment a Puigcerdà , 📦Enviament a domicili ,📦 Gratuït partir de 50€"
             backgroundColor="#96CADE"
             rotate={true}
         />
         <TextMarquee
+            astro:after-swap
             client:only="react"
             text="📦 Enviament a domicili ,📦 Gratuït partir de 50€, +23 clientes contentes ,🏔️ Produit artesanalment a Puigcerdà  "
             speed={100}

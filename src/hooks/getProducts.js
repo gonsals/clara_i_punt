@@ -50,7 +50,6 @@ export async function getProducts() {
     return { products, error };
 }
 
-
 export const getProductsIds = async () => {
     const { products, error } = await getProducts();
 
