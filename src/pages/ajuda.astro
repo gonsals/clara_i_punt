@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { store } from '../lib/store.js';
+---
+
+<Layout title="T’ajudem?">
+  <div class="page-width">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <span>T’ajudem?</span>
+    </nav>
+    <header class="editorial-header">
+      <p class="eyebrow">AMB ALGÚ A L’ALTRE COSTAT</p>
+      <h1>
+        Els petits dubtes,
+        <br />
+        <span>ben resolts.</span>
+      </h1>
+      <p>Tot allò que et pot anar bé abans de triar una peça i quan ja la tens a les mans.</p>
+    </header>
+    <div class="help-layout">
+      <nav class="help-nav" aria-label="Temes d’ajuda">
+        <a href="#preguntes">Les peces</a>
+        <a href="#enviament">Enviaments i comandes</a>
+        <a href="#cures">Com cuidar el ganxet</a>
+        <a href="/contacte">Escriu-nos ↗</a>
+      </nav>
+      <div class="help-content">
+        <section id="preguntes">
+          <h2>Sobre les peces.</h2>
+          <details open>
+            <summary>
+              Totes les peces estan fetes a mà? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Sí. La Clara és la nostra iaia i ha fet a mà totes les peces que es vendran a la
+              botiga. El treball artesanal fa que hi pugui haver petites diferències de forma,
+              teixit o color entre una peça i una altra. Les peces marcades com a mostra serveixen
+              per veure el disseny i no estan a la venda.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Què passa si una peça està esgotada? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Cada peça té la seva disponibilitat indicada a la fitxa. Si la que t’agrada no està
+              disponible, escriu-nos i t’explicarem què hi ha a la col·lecció o què està teixint la
+              Clara.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Puc saber-ne les mides o el material? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Trobaràs la informació disponible a «Els petits detalls» de la fitxa de cada peça. Si
+              et falta alguna dada per decidir-te, pregunta’ns abans de comprar.
+            </p>
+          </details>
+          <details>
+            <summary>
+              El color serà exactament com a la fotografia? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Les pantalles poden mostrar els tons una mica diferents. Les fotografies ajuden a
+              veure la peça, però si tens dubtes sobre el color et podem donar més informació.
+            </p>
+          </details>
+        </section>
+        <section id="enviament">
+          <h2>Enviaments i comandes.</h2>
+          <details>
+            <summary>
+              Com es confirma l’enviament? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              El cost, les destinacions disponibles i les condicions d’enviament s’han de confirmar
+              abans del pagament. Si necessites una peça per a una data concreta, consulta’ns abans
+              de fer la comanda.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Tinc un dubte sobre una comanda o una devolució. <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Escriu a{' '}
+              <a class="text-link" href={`mailto:${store.email}`}>
+                {store.email}
+              </a>{' '}
+              amb la referència de la comanda, si en tens una, i explica’ns què necessites. No
+              incloguis dades de la targeta al correu.
+            </p>
+          </details>
+        </section>
+        <section id="cures">
+          <h2>Perquè t’acompanyi molt de temps.</h2>
+          <details open>
+            <summary>
+              Com rento una peça de ganxet? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Consulta sempre les indicacions particulars de la teva peça. En general, renta-la
+              suaument a mà amb aigua freda, evita fregar o retorçar el teixit i utilitza un
+              detergent suau.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Com l’asseco i la guardo? <span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Deixa-la assecar en pla, sense penjar-la quan encara està mullada. Evita l’assecadora
+              i guarda-la en un lloc sec, sense pes a sobre.
+            </p>
+          </details>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>

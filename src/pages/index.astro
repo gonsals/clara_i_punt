@@ -1,111 +1,172 @@
 ---
-import Button from "../components/Button.astro";
-import TextMarquee from "../components/Marqueee";
-import Header from "../components/navBar/Header";
-import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-
-import florDreta from "../../public/images/florDreta.svg";
-import florEsquerra from "../../public/images/florEsquerra.svg";
-import Products from "../components/hero/Products.astro";
-import TextMarqueeSolitaire from "../components/MarqueeeSolitaire";
-import { getProducts } from "../hooks/getProducts";
-import Product from "../components/product/Product.astro";
-
-const { products, error } = await getProducts();
+import Layout from '../layouts/Layout.astro';
+import HeroShowcase from '../components/shop/HeroShowcase.jsx';
+import Marquee from '../components/shop/Marquee.astro';
+import ProductRail from '../components/shop/ProductRail.jsx';
+import GrandmaPhoto from '../components/shop/GrandmaPhoto.astro';
+import { getCatalog } from '../lib/catalog.js';
+import { formatPrice } from '../lib/product.js';
+import { outfitIdeas } from '../lib/design-preview.js';
+const { products, error } = await getCatalog();
+const actual = products.filter((product) => !product.preview);
+const featured = actual[0] || products[0];
+const guarantees = [
+  { icon: '🏔️', text: 'Fet a Puigcerdà', link: '/la-clara' },
+  { icon: '📦', text: 'Enviaments amb cura', link: '/ajuda#enviament' },
+  { icon: '🧶', text: 'Fet a mà per la Clara', link: '/la-clara' },
+  { icon: '💌', text: 'Atenció propera', link: '/contacte' },
+  { icon: '🤲', text: 'Cada peça, única', link: '/products' },
+];
 ---
 
 <Layout>
-    <Header client:only="react" />
-
-    <!-- Hero section -->
-    <section id="hero" class="flex flex-col items-center lg:w-[75%] w-full">
-        <h1
-            class="text-clara-text-blue font-bold text-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl pt-10"
-        >
-            El passatemps de la Clara,<br /> a les teves mans
+  <div class="figma-home">
+    <section class="home-hero">
+      <div class="hero-heading">
+        <h1>
+          El passatemps de la Clara,
+          <br />a les teves mans
         </h1>
-
-        <Button
-            text="Fes-hi un cop d'ull"
-            className=" lg:mt-10 md:mt-6 sm:mt-10 mt-5 mb-4 md:mb-5 lg:mb-0"
-            href="products"
-        />
-        <Products products={products} error={error} />
+        <a class="button" href="/products">
+          Fes-hi un cop d’ull
+        </a>
+      </div>
+      <HeroShowcase client:load />
     </section>
-    <!-- Marquee section movement text -->
-    <div
-        class="lg:my-28 md:my-8 my-6 w-screen flex flex-col justify-center items-center"
-    >
-        <TextMarquee
-            astro:after-swap
-            client:only="react"
-            text="+23 clientes contentes ,🏔️ Produit artesanalment a Puigcerdà , 📦Enviament a domicili ,📦 Gratuït partir de 50€"
-            backgroundColor="#96CADE"
-            rotate={true}
-        />
-        <TextMarquee
-            astro:after-swap
-            client:only="react"
-            text="📦 Enviament a domicili ,📦 Gratuït partir de 50€, +23 clientes contentes ,🏔️ Produit artesanalment a Puigcerdà  "
-            speed={100}
-            backgroundColor="#F6BDFD"
-            fontColor="white"
-            direction="right"
-        />
+    <div class="marquee-stack">
+      <Marquee
+        items={['🧶 Peces fetes per la iaia Clara', '🏔️ Produït artesanalment a Puigcerdà']}
+        variant="sky"
+        direction="left"
+        speed={50}
+        tilted
+      />
+      <Marquee
+        items={['📦 Petites peces, grans històries', '💌 Parlem-ne, ens agradarà llegir-te']}
+        variant="mauve"
+        direction="right"
+        speed={100}
+        tilted
+      />
     </div>
-
-    <section class="relative bg-clara-yellow w-full">
-        <Image
-            src={florEsquerra}
-            alt="Flor Adalt"
-            width="100"
-            height="100"
-            class="absolute top-0 left-0"
-        />
-        <Image
-            src={florDreta}
-            alt="Flor Abaix"
-            width="100"
-            height="100"
-            class="absolute bottom-0 right-0 z-20"
-        />
-
-        <div
-            class="container md:px-0 mx-auto px-2 py-11 grid grid-cols-1 md:grid-cols-2 justify-items-center items-center"
-        >
-            <div
-                class="md:p-14 p-9 flex flex-col md:gap-9 gap-6 text-clara-text-blue items-start"
-            >
-                <h1 class="md:text-4xl text-2xl font-bold z-10">
-                    Peces de ganxet <br /> fetes a mà.
-                </h1>
-                <p>
-                    In a quaint little town, where the sun kissed the rooftops
-                    and the breeze carried whispers of adventure, there lived a
-                    curious cat named Whiskers. Every day, Whiskers would
-                    explore the vibrant gardens filled with blooming flowers and
-                    fluttering butterflies.
-                </p>
-                <Button text="Contacta amb nosaltres" className="" />
-            </div>
-            <div
-                class="flex items-center justify-center w-[80%] h-[350px] bg-white rounded-3xl"
-            >
-            </div>
+    <section class="craft-section">
+      <img class="craft-corner craft-corner-start" src="/images/figma/imgVector4.svg" alt="" />
+      <img class="craft-corner craft-corner-end" src="/images/figma/imgVector5.svg" alt="" />
+      <div class="craft-inner">
+        <div class="craft-copy">
+          <h2>
+            Peces de ganxet
+            <br />
+            fetes a mà.
+          </h2>
+          <p>
+            La Clara és la nostra iaia. Totes les peces que vendrem a Clara i Punt les ha fet ella,
+            amb les seves mans i al seu ritme. Nosaltres compartim el resultat perquè cada peça
+            trobi algú que la vulgui portar.
+          </p>
+          <a class="button" href="/la-clara">
+            Coneix la iaia Clara
+          </a>
         </div>
+        <figure class="craft-photo">
+          <img
+            src="/images/placeholders/craft-hands.webp"
+            alt="Fotografia provisional de mans treballant una peça de ganxet"
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+          <figcaption>Fotografia provisional</figcaption>
+        </figure>
+      </div>
     </section>
-
-    <div
-        class="lg:my-28 md:my-8 my-6 w-screen flex flex-col justify-center items-center"
-    >
-        <TextMarqueeSolitaire
-            client:only="react"
-            text="📌 Producte de proximitat  "
-            speed={90}
-            fontColor="white"
-            direction="right"
-        />
-        <Product products={products} error={error} />
+    {products.length ? (
+      <ProductRail client:load products={products} title="Les vostres peces" id="peces-carousel" />
+    ) : (
+      <section class="collection-section page-width section-space">
+        <h2>Les vostres peces</h2>
+        <div class="empty-state">
+          <p>{error || 'La Clara està preparant les properes peces.'}</p>
+          <a class="button" href="/contacte">
+            Parlem-ne
+          </a>
+        </div>
+      </section>
+    )}
+    <div class="proximity-marquee">
+      <Marquee items={['🧶 Producte de proximitat']} variant="blue" direction="right" speed={90} />
     </div>
+    {featured && (
+      <section class="slow-feature" aria-labelledby="slow-title">
+        <h2 id="slow-title">Produït a poc a poc</h2>
+        <a
+          class="slow-feature-visual"
+          href={`/product/${featured.id}`}
+          aria-label={`Descobreix ${featured.name}`}
+        >
+          <img
+            src={featured.images[0].url}
+            alt={featured.name}
+            width="800"
+            height="900"
+            loading="lazy"
+          />
+        </a>
+        <div class="slow-feature-panel">
+          <h3>{featured.name}</h3>
+          <span class="feature-category">{featured.category}</span>
+          <p>{featured.description}</p>
+          {featured.price !== null && <p class="feature-price">{formatPrice(featured.price)}</p>}
+          <a class="button" href={`/product/${featured.id}`}>
+            Veure aquesta peça
+          </a>
+        </div>
+      </section>
+    )}
+    <ProductRail
+      client:load
+      outfits={outfitIdeas}
+      kind="outfits"
+      title="Idees d’outfit"
+      id="outfits-carousel"
+    />
+    <section class="guarantees-section" aria-labelledby="guarantees-title">
+      <div class="guarantees-heading">
+        <h2 id="guarantees-title">Les garanties de Clara i punt</h2>
+        <a class="button button-light" href="/contacte">
+          Contacta amb nosaltres
+        </a>
+      </div>
+      {guarantees.map((guarantee, index) => (
+        <a class={`guarantee-card guarantee-${index + 1}`} href={guarantee.link}>
+          <span aria-hidden="true">{guarantee.icon}</span>
+          <p>{guarantee.text}</p>
+        </a>
+      ))}
+    </section>
+    <section class="story-section">
+      <div class="story-inner">
+        <div class="story-copy">
+          <h2>
+            Qui està darrere
+            <br />
+            de Clara i punt?
+          </h2>
+          <p>
+            La Clara és la nostra iaia i la persona que ha fet totes les peces que es vendran a la
+            botiga. La Marina i en Marc veien com el seu ganxet agradava a tot el poble i com ella
+            guardava les peces en un armari.
+          </p>
+          <p>
+            Vam decidir ajudar-la a compartir-les. Sense pressió, sense presses: ella continua
+            teixint com sempre, i nosaltres fem que la seva feina arribi a noves mans.
+          </p>
+          <a class="text-link" href="/la-clara">
+            Coneix la iaia Clara ↗
+          </a>
+        </div>
+        <GrandmaPhoto />
+      </div>
+    </section>
+  </div>
 </Layout>

@@ -1,0 +1,50 @@
+---
+import { store } from '../../lib/store.js';
+---
+
+<footer class="site-footer">
+  <div class="footer-heading page-width">
+    <a href="/" aria-label="Clara i Punt — Inici">
+      <img src="/images/figma/imgLogo1.svg" alt="Clara i Punt" width="138.237" height="48" />
+    </a>
+    <div>
+      <span>CAT</span>
+      <a href="/contacte">Parlem-ne ↗</a>
+    </div>
+  </div>
+  <div class="footer-top page-width">
+    <div class="footer-column">
+      <h2>La col·lecció</h2>
+      <a href="/products">Totes les peces</a>
+      <a href="/products?categoria=Bosses">Bosses de ganxet</a>
+      <a href="/products?categoria=Xals%20i%20mocadors">Xals i mocadors</a>
+      <a href="/products?categoria=Complements">Petits complements</a>
+    </div>
+    <div class="footer-column">
+      <h2>La família</h2>
+      <a href="/la-clara">La iaia Clara</a>
+      <a href="/contacte">Contacta amb nosaltres</a>
+      <a href="/ajuda#cures">Cuida el teu ganxet</a>
+      <a href="/ajuda#preguntes">Preguntes freqüents</a>
+    </div>
+    <div class="footer-column">
+      <h2>T’acompanyem</h2>
+      <a href="/ajuda#enviament">Enviaments i comandes</a>
+      <a href="/privacitat">Privacitat</a>
+      <a href="/ajuda">T’ajudem?</a>
+    </div>
+    <div class="footer-contact">
+      <p>
+        De les mans de la nostra iaia
+        <br />a les teves.
+      </p>
+      <a href={`mailto:${store.email}`}>Escriu-nos ↗</a>
+      <span>Fet a mà a Puigcerdà.</span>
+    </div>
+  </div>
+  <div class="footer-bottom page-width">
+    <p>© {new Date().getFullYear()} Clara i Punt</p>
+    <p>Ganxet fet amb calma i amb amor ♡</p>
+    <span>Puigcerdà · Catalunya</span>
+  </div>
+</footer>

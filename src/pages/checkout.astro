@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Checkout from '../components/shop/Checkout.jsx';
+import { getCatalog } from '../lib/catalog.js';
+import { store } from '../lib/store.js';
+const { products } = await getCatalog({ fresh: true });
+---
+
+<Layout title="La teva comanda" noindex>
+  <div class="page-width">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <a href="/products">La col·lecció</a>
+      <span aria-hidden="true">/</span>
+      <span>La teva comanda</span>
+    </nav>
+    <header class="editorial-header">
+      <p class="eyebrow">LES PECES QUE HAS TRIAT</p>
+      <h1>
+        Un pas més a prop
+        <br />
+        <span>de les teves mans.</span>
+      </h1>
+    </header>
+    <Checkout client:load products={products} email={store.email} />
+  </div>
+</Layout>
