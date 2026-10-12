@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrandmaPhoto from '../components/shop/GrandmaPhoto.astro';
+---
+
+<Layout title="La iaia Clara">
+  <div class="page-width">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <span>La iaia Clara</span>
+    </nav>
+    <header class="editorial-header">
+      <p class="eyebrow">LA PERSONA DARRERE DE CADA PUNT</p>
+      <h1>
+        La Clara és la nostra iaia.
+        <br />
+        <span>I això ho fa molt especial.</span>
+      </h1>
+      <p>
+        Totes les peces que es vendran a Clara i Punt les ha fet ella, una a una, amb les seves
+        pròpies mans.
+      </p>
+    </header>
+    <section class="editorial-story">
+      <div class="story-inner">
+        <div class="prose">
+          <h2>El seu passatemps, a les teves mans.</h2>
+          <p>
+            A la nostra iaia Clara li agrada fer ganxet. La Marina i en Marc veien com teixia peces
+            que agradaven a tot el poble i com les anava guardant en un armari.
+          </p>
+          <p>
+            Volíem ajudar-la a compartir aquella feina. Així neix Clara i Punt: ella continua fent
+            allò que li agrada i nosaltres ens encarreguem de fotografiar les peces, ensenyar-les i
+            fer que arribin a noves mans.
+          </p>
+          <h2>Fet per ella. Compartit per nosaltres.</h2>
+          <p>
+            La Clara és qui fa el ganxet. Cada bossa, cada xal i cada peça real de la botiga passa
+            per les seves mans. La botiga és una manera de donar valor al que ella ja fa.
+          </p>
+          <p>
+            Sense pressió ni presses. Amb la calma, els colors i les petites diferències que fan que
+            una peça artesanal tingui personalitat.
+          </p>
+          <a class="button" href="/products">
+            Descobreix les seves peces
+          </a>
+        </div>
+        <GrandmaPhoto />
+      </div>
+    </section>
+    <figure class="family-craft-photo">
+      <img
+        src="/images/placeholders/craft-hands.webp"
+        alt="Fotografia provisional d’unes mans fent ganxet"
+        width="1536"
+        height="1024"
+        loading="lazy"
+      />
+      <figcaption>Fotografia provisional · imatge de mostra</figcaption>
+    </figure>
+  </div>
+  <section class="contact-band page-width">
+    <div>
+      <p class="eyebrow">UNA BOTIGA AMB UNA HISTÒRIA FAMILIAR</p>
+      <h2>Nosaltres t’ajudem.</h2>
+      <p>Per preguntar per una peça o conèixer-ne els detalls, escriu-nos.</p>
+    </div>
+    <a class="button button-light" href="/contacte">
+      Parlem-ne
+    </a>
+  </section>
+</Layout>

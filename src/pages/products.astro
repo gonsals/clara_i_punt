@@ -1,66 +1,47 @@
 ---
-import { getProducts } from "../hooks/getProducts";
-import ProductLayout from "../layouts/ProductLayout.astro";
-
-interface Product {
-    id: string;
-    fields: {
-        Imagenes: { url: string }[];
-        Nombre: string;
-        Descripcion: string;
-    };
-}
-
-const { products, error }: { products: Product[]; error: string | null } =
-    await getProducts();
+import Layout from '../layouts/Layout.astro';
+import Catalog from '../components/shop/Catalog.jsx';
+import { getCatalog } from '../lib/catalog.js';
+const { products, error } = await getCatalog();
 ---
 
-<ProductLayout>
-    {
-        error ? (
-            <p class="text-red-500">{error}</p>
-        ) : (
-            <div class="container px-4 md:px-0">
-                {products.length === 0 && !error ? (
-                    <p>Cargando productos...</p>
-                ) : null}
-
-                {error ? (
-                    <p class="text-red-500">{error}</p>
-                ) : (
-                    <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
-                        {products.map((product) => (
-                            <a href={`/product/${product.id}`}>
-                                <img
-                                    src={product?.fields?.Imagenes[0]?.url}
-                                    alt={product.fields.Nombre}
-                                    transition:name={`${product.id}-prueba`}
-                                />
-                                <h2>{product.fields.Nombre}</h2>
-                                <p>{product.fields.Descripcion}</p>
-                            </a>
-                        ))}
-                    </div>
-                )}
-
-                {/* Mostrar el carrusel solo en móviles */}
-                {/* <div class="swiper">
-                <div class="swiper-wrapper">
-                    <CardProduct1
-                        image={products[2].fields.Imagenes[0].url}
-                        className="swiper-slide"
-                    />
-                    <CardProduct2
-                        image={products[1].fields.Imagenes[0].url}
-                        className="swiper-slide"
-                    />
-                    <CardProduct3
-                        image={products[0].fields.Imagenes[0].url}
-                        className="swiper-slide"
-                    />
-                </div>
-            </div> */}
-            </div>
-        )
-    }
-</ProductLayout>
+<Layout title="La col·lecció">
+  <div class="page-width">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <span>La col·lecció</span>
+    </nav>
+    <section class="catalog-intro">
+      <p class="eyebrow">TRIA UNA PEÇA AMB HISTÒRIA</p>
+      <h1>
+        Ganxet per als
+        <br />
+        <span>teus petits moments.</span>
+      </h1>
+      <p>
+        Bosses, xals i peces que porten color al dia a dia.
+        <br />
+        Tot fet a mà per la nostra iaia Clara, punt a punt.
+      </p>
+      <span class="catalog-flower" aria-hidden="true">
+        <img src="/images/figma/imgVector3.svg" alt="" width="206" height="205.99" />
+      </span>
+    </section>
+    <Catalog
+      client:load
+      products={products}
+      error={error}
+      initialCategory={Astro.url.searchParams.get('categoria') || ''}
+      initialQuery={Astro.url.searchParams.get('q') || ''}
+      initialSort={Astro.url.searchParams.get('ordre') || 'featured'}
+    />
+  </div>
+  <section class="small-contact page-width">
+    <h2>No trobes la peça que buscaves?</h2>
+    <p>Ens pots escriure. T’expliquem què està teixint la Clara.</p>
+    <a class="text-link" href="/contacte">
+      Parlem-ne ↗
+    </a>
+  </section>
+</Layout>

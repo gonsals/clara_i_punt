@@ -1,0 +1,34 @@
+---
+const { items, variant = 'sky', direction = 'left', speed = 50, tilted = false } = Astro.props;
+---
+
+<div
+  class:list={['brand-marquee', `marquee-${variant}`, { 'marquee-tilted': tilted }]}
+  data-marquee
+  data-speed={speed}
+  data-direction={direction}
+  aria-label={items.join(' · ')}
+>
+  <div class="marquee-track" aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="marquee-group">
+        {[0, 1, 2].map(() => items.map((item: string) => <span>{item}</span>))}
+      </div>
+    ))}
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((element) => {
+    const group = element.querySelector<HTMLElement>('.marquee-group');
+    if (!group) return;
+    const measure = () =>
+      element.style.setProperty(
+        '--marquee-duration',
+        `${group.getBoundingClientRect().width / Number(element.dataset.speed || 50)}s`,
+      );
+    const observer = new ResizeObserver(measure);
+    observer.observe(group);
+    measure();
+    document.fonts.ready.then(measure);
+  });
+</script>

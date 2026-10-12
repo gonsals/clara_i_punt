@@ -1,76 +1,62 @@
 ---
-import Loader from "../components/Loader.astro";
+import StoreShell from '../components/shop/StoreShell.jsx';
+import Footer from '../components/shop/Footer.astro';
+import { getCatalog } from '../lib/catalog.js';
+import { store } from '../lib/store.js';
+import '../styles/shop.css';
+import '../styles/figma.css';
+import MotionToggle from '../components/shop/MotionToggle.jsx';
+const {
+  title = 'Ganxet amb història',
+  description = store.description,
+  noindex = false,
+} = Astro.props;
+const catalog = await getCatalog();
+const canonical = new URL(Astro.url.pathname, import.meta.env.SITE_URL || Astro.url.origin);
 ---
 
 <!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
-            rel="stylesheet"
-        />
-        <title>Clara i Punt</title>
-    </head>
-    <body>
-        <slot />
-        <!-- <Loader /> -->
-    </body>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#007CC6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title} · Clara i Punt</title>
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex || catalog.preview ? 'noindex,nofollow' : 'index,follow'}
+    />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={`${title} · Clara i Punt`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ca_ES" />
+    <meta property="og:image" content={new URL('/images/products/marina.webp', canonical).href} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contingut">
+      Salta al contingut
+    </a>
+    <StoreShell
+      client:load
+      products={catalog.products}
+      preview={catalog.preview}
+      currentPath={Astro.url.pathname}
+      email={store.email}
+    />
+    <main id="contingut">
+      <slot />
+    </main>
+    <Footer />
+    {Astro.url.pathname === '/' && <MotionToggle client:load />}
+  </body>
 </html>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        padding: 0;
-        flex-direction: column;
-        align-items: center;
-        font-family: "Figtree", sans-serif;
-        overflow-x: hidden;
-        scrollbar-width: thin;
-        scrollbar-color: #007cc6 #f6bdfd;
-    }
-</style>
-
-<!-- <script>
-    window.addEventListener("load", () => {
-        const images = document.querySelectorAll("img");
-        const totalImages = images.length;
-
-        if (totalImages === 0) {
-            const loader = document.querySelector(".loader");
-            if (loader instanceof HTMLElement) {
-                loader.style.display = "none";
-            }
-        } else {
-            let loadedImages = 0;
-
-            const checkImageLoad = () => {
-                loadedImages++;
-                if (loadedImages === totalImages) {
-                    const loader = document.querySelector(".loader");
-                    if (loader instanceof HTMLElement) {
-                        loader.style.display = "none";
-                    }
-                }
-            };
-
-            images.forEach((image) => {
-                if (image.complete) {
-                    checkImageLoad();
-                } else {
-                    image.addEventListener("load", checkImageLoad);
-                    image.addEventListener("error", checkImageLoad);
-                }
-            });
-        }
-    });
-</script> -->

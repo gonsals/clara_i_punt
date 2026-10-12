@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/shop/ContactForm.jsx';
+import { store } from '../lib/store.js';
+---
+
+<Layout title="Parlem-ne">
+  <div class="page-width">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <span>Contacte</span>
+    </nav>
+    <header class="editorial-header">
+      <p class="eyebrow">ENS AGRADARÀ LLEGIR-TE</p>
+      <h1>
+        Parlem de ganxet.
+        <br />
+        <span>O del que tens al cap.</span>
+      </h1>
+      <p>Una peça t’ha cridat l’atenció? Necessites saber-ne més? Escriu-nos i ho parlem.</p>
+    </header>
+    <div class="contact-page">
+      <div class="contact-card">
+        <h2>Un correu, i en parlem.</h2>
+        <p>
+          La nostra iaia Clara fa totes les peces. La Marina i en Marc t’ajudem amb la botiga, les
+          comandes i qualsevol pregunta sobre el seu ganxet.
+        </p>
+        <a class="text-link" href={`mailto:${store.email}`}>
+          {store.email} ↗
+        </a>
+        <div class="contact-note">
+          <h3>Des de Puigcerdà.</h3>
+          <p>
+            Una petita història familiar a la Cerdanya, amb el ganxet de la Clara com a fil
+            conductor.
+          </p>
+        </div>
+        <div class="contact-note">
+          <h3>Ja tens una comanda?</h3>
+          <p>Inclou la referència de la comanda al missatge perquè et puguem ajudar millor.</p>
+        </div>
+      </div>
+      <ContactForm client:load email={store.email} />
+    </div>
+    <figure class="family-craft-photo">
+      <img
+        src="/images/placeholders/craft-hands.webp"
+        alt="Fotografia provisional de ganxet artesanal"
+        width="1536"
+        height="1024"
+        loading="lazy"
+      />
+      <figcaption>Fotografia provisional</figcaption>
+    </figure>
+  </div>
+</Layout>

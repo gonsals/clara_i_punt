@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { store } from '../lib/store.js';
+---
+
+<Layout title="Privacitat">
+  <div class="page-width legal-page">
+    <nav class="breadcrumbs" aria-label="Ruta de navegació">
+      <a href="/">Inici</a>
+      <span aria-hidden="true">/</span>
+      <span>Privacitat</span>
+    </nav>
+    <header class="editorial-header">
+      <p class="eyebrow">LES COSES CLARES</p>
+      <h1>La teva privacitat.</h1>
+      <p>Com funciona aquesta web i com pots contactar amb nosaltres sobre les teves dades.</p>
+    </header>
+    <div class="prose">
+      <h2>La cistella al teu navegador.</h2>
+      <p>
+        La web desa els identificadors de les peces i les quantitats de la cistella a
+        l’emmagatzematge local del navegador, perquè puguis continuar mirant sense perdre-les. Pots
+        buidar la cistella o esborrar les dades del lloc des de la configuració del navegador.
+      </p>
+      <h2>Quan ens escrius.</h2>
+      <p>
+        El formulari de contacte prepara un correu a la teva pròpia aplicació; no envia cap missatge
+        automàticament. Només rebem el que decideixes enviar-nos. Utilitzem aquesta informació per
+        respondre a la teva consulta.
+      </p>
+      <h2>Serveis que utilitza la web.</h2>
+      <p>
+        Les dades de les peces es carreguen des d’Airtable al servidor. Les fotografies poden estar
+        allotjades a Airtable. La tipografia es carrega des de Google Fonts; les peticions a aquests
+        serveis inclouen les dades tècniques habituals de la connexió. Aquesta versió no incorpora
+        eines d’analítica ni píxels publicitaris.
+      </p>
+      <h2>Sobre els pagaments.</h2>
+      <p>
+        El cobrament amb targeta s’activarà quan estigui configurat el proveïdor de pagament. La web
+        no et demana ni emmagatzema dades de targeta.
+      </p>
+      <h2>Contacte.</h2>
+      <p>
+        Per a consultes sobre les teves dades, escriu a{' '}
+        <a href={`mailto:${store.email}`}>{store.email}</a>. Abans d’activar la venda s’han de
+        completar les dades del titular de la botiga i les condicions comercials corresponents.
+      </p>
+    </div>
+  </div>
+</Layout>
