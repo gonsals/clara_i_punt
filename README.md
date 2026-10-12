@@ -8,6 +8,3 @@
 -   [Tailwind CSS](https://tailwindcss.com/)
 -   [Airtable](https://airtable.com/)
 
-## Diseño
-
--Diseñadora: [blablade](https://www.blablade.com/)
